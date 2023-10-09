@@ -16,16 +16,31 @@ export const blogApi = createApi({
   tagTypes: [],
   endpoints: (builder) => ({
     getPost: builder.query<any, any>({
-      query: () => ({
+      query: (body) => ({
         url: BlogEndpoints.GET_POST,
         method: "GET",
-        // headers: {
-        //   "app-id": "652297c1f6390edd9df64d93",
-        //   accept: "application/json",
-        // },
+        params: body,
+      }),
+    }),
+    getPostDetails: builder.query<any, any>({
+      query: (body) => ({
+        url: `${BlogEndpoints.GET_POST}/${body?.id}`,
+        method: "GET",
+        params: body,
+      }),
+    }),
+    getPostComments: builder.query<any, any>({
+      query: (body) => ({
+        url: `${BlogEndpoints.GET_POST}/${body?.id}/comment`,
+        method: "GET",
+        params: body,
       }),
     }),
   }),
 });
 
-export const { useGetPostQuery } = blogApi;
+export const {
+  useGetPostQuery,
+  useGetPostDetailsQuery,
+  useGetPostCommentsQuery,
+} = blogApi;
