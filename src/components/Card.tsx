@@ -25,7 +25,7 @@ const Card = ({
   return (
     <div
       onClick={() => router.push(`/blog/${id}`)}
-      className="rounded-[16px] cursor-pointer bg-white border border-[#292d3233] hover:border-none ease-out w-[318px] p-5"
+      className="rounded-[16px] cursor-pointer bg-white border border-[#292d3233] hover:border-none ease-out w-[100%] sm:w-[318px]  p-5"
     >
       <div className="w-full h-[150px]">
         <Image

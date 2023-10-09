@@ -13,7 +13,7 @@ export const blogApi = createApi({
   reducerPath: "blogApi",
   refetchOnFocus: true,
   baseQuery: baseQuery,
-  tagTypes: [],
+  tagTypes: ["comment"],
   endpoints: (builder) => ({
     getPost: builder.query<any, any>({
       query: (body) => ({
@@ -35,6 +35,15 @@ export const blogApi = createApi({
         method: "GET",
         params: body,
       }),
+      providesTags: ["comment"],
+    }),
+    createComments: builder.mutation<any, any>({
+      query: (body) => ({
+        url: BlogEndpoints.CREATE_COMMENT,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["comment"],
     }),
   }),
 });
@@ -43,4 +52,5 @@ export const {
   useGetPostQuery,
   useGetPostDetailsQuery,
   useGetPostCommentsQuery,
+  useCreateCommentsMutation,
 } = blogApi;

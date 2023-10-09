@@ -45,7 +45,7 @@ const BlogDetails = () => {
           ) : isDetailsFetching || isDetailsLoading ? (
             <p>Loading...</p>
           ) : postDetails ? (
-            <article className="flex-1">
+            <article className="flex-[50%]">
               <div className=" w-full h-[400px] rounded-[16px] ">
                 <Image
                   src={postDetails?.image}
@@ -89,10 +89,10 @@ const BlogDetails = () => {
           ) : isCommentFetching || isCommentLoading ? (
             <p>Loading...</p>
           ) : postComments?.data.length > 0 ? (
-            <aside className="flex-1">
+            <aside className="flex-[50%] ">
               <h3 className="capitalize text-[24px] font-medium ">comments</h3>
 
-              <div className="flex flex-col flex-wrap mt-6 gap-4">
+              <div className="flex flex-col flex-wrap mt-6 gap-4 max-h-[500px] ">
                 {postComments?.data.map(
                   ({
                     id,
@@ -110,7 +110,10 @@ const BlogDetails = () => {
                       lastName: string;
                     };
                   }) => (
-                    <div key={id}>
+                    <div
+                      key={id}
+                      className="p-2 border border-[#292d3233] rounded-[6px]"
+                    >
                       <div className="flex gap-3">
                         <Image
                           src={owner?.picture}
@@ -137,7 +140,7 @@ const BlogDetails = () => {
           )}
         </>
       </section>
-      <CommentSection />
+      <CommentSection params={params} />
     </main>
   );
 };
