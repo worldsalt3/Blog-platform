@@ -38,7 +38,7 @@ const Card = ({
         />
       </div>
 
-      <h3 className="mt-4">{text}</h3>
+      <div className="mt-4" dangerouslySetInnerHTML={{ __html: text }}></div>
 
       <div className="flex gap-3 mt-4">
         <Image

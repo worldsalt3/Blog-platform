@@ -1,5 +1,6 @@
 import { useCreateCommentsMutation } from "@/apis/BlogQuery";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const CommentSection = ({ params }: { params: { id: string } }) => {
   const [message, setMessage] = useState<string>("");
@@ -18,6 +19,10 @@ const CommentSection = ({ params }: { params: { id: string } }) => {
     try {
       const res = await createCommentMutation(payload).unwrap();
       console.log(res);
+      if (res) {
+        setMessage("");
+        toast.success("Comment Added");
+      }
     } catch (error) {
       console.log(error);
     }
